@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Gestiona</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header avec navigation -->
+    <header class="bg-blue-600 text-white shadow-md fixed top-0 w-full z-50">
+        <h1 class="text-xl font-bold text-center py-3">La Gestiona</h1>
+        <nav class="bg-blue-500 p-2 flex justify-center space-x-3">
+            <button id="btn-ajt" class="nav-btn active px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition-colors">
+                <i class="fas fa-plus mr-1"></i> Ajt
+            </button>
+            <button id="btn-dos" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <i class="fas fa-folder mr-1"></i> Dos
+            </button>
+            <button id="btn-mod" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <i class="fas fa-edit mr-1"></i> Mod
+            </button>
+            <button id="btn-sup" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <i class="fas fa-trash mr-1"></i> Sup
+            </button>
+            <button id="btn-eta" class="nav-btn px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                <i class="fas fa-chart-bar mr-1"></i> Eta
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="mt-24 p-4 max-w-md mx-auto">
+        <!-- Section Ajouter -->
+        <section id="section-ajouter" class="section active">
+            <h2 class="text-lg font-semibold mb-4">Ajouter un dossier</h2>
+            <form id="form-ajout" class="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <input type="hidden" id="dossier-id">
+                
+                <div class="form-group space-y-1">
+                    <label for="nom-dossier" class="block text-sm font-medium text-gray-700">Nom du dossier *</label>
+                    <input type="text" id="nom-dossier" required 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div class="form-group space-y-1">
+                    <label for="date-arrivee" class="block text-sm font-medium text-gray-700">Date d'arrivée *</label>
+                    <input type="date" id="date-arrivee" required 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div class="form-group space-y-1">
+                    <label for="etat-dossier" class="block text-sm font-medium text-gray-700">État du dossier *</label>
+                    <select id="etat-dossier" required 
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="En cours">En cours</option>
+                        <option value="En attente">En attente</option>
+                        <option value="Terminé">Terminé</option>
+                    </select>
+                </div>
+
+                <div id="date-fin-group" class="form-group hidden">
+                    <label for="date-fin" class="block text-sm font-medium text-gray-700">Date de fin de traitement *</label>
+                    <input type="date" id="date-fin" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div id="nb-ecritures-group" class="form-group hidden">
+                    <label for="nb-ecritures" class="block text-sm font-medium text-gray-700">Nombre d'écritures *</label>
+                    <input type="number" id="nb-ecritures" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div class="form-group space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Pièces saisies</label>
+                    <div class="space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-saisies" value="achats">
+                            <span class="ml-2">Achats</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-saisies" value="ventes">
+                            <span class="ml-2">Ventes</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-saisies" value="banque">
+                            <span class="ml-2">Banque</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-saisies" value="caisse">
+                            <span class="ml-2">Caisse</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-saisies" value="od">
+                            <span class="ml-2">OD</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Pièces manquantes</label>
+                    <div class="space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-manquantes" value="achats">
+                            <span class="ml-2">Achats</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-manquantes" value="ventes">
+                            <span class="ml-2">Ventes</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-manquantes" value="releve">
+                            <span class="ml-2">Relevé</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-manquantes" value="salaires">
+                            <span class="ml-2">Salaires</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="autres-detail-check" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" name="pieces-manquantes" value="autres">
+                            <span class="ml-2">Autres à détailler</span>
+                        </label>
+                    </div>
+                    <div id="autres-detail-group" class="mt-2 hidden">
+                        <input type="text" id="autres-detail" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Précisez les autres pièces manquantes">
+                    </div>
+                </div>
+
+                <div class="form-group space-y-1">
+                    <label for="remarque" class="block text-sm font-medium text-gray-700">Remarque</label>
+                    <textarea id="remarque" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Enregistrer
+                </button>
+            </form>
+        </section>
+
+        <!-- Section Dossiers -->
+        <section id="section-dossiers" class="section hidden">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold">Liste des dossiers</h2>
+                <div class="flex space-x-2">
+                    <button id="btn-search" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button id="btn-mail" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recherche -->
+            <div id="search-panel" class="mb-4 hidden">
+                <div class="space-y-2">
+                    <input type="text" id="search-nom" placeholder="Rechercher par nom" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <div class="flex space-x-2">
+                        <input type="date" id="search-date-debut" class="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Date début">
+                        <input type="date" id="search-date-fin" class="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Date fin">
+                    </div>
+                </div>
+            </div>
+
+            <div id="dossiers-list" class="space-y-3">
+                <!-- Les dossiers seront ajoutés ici dynamiquement -->
+            </div>
+        </section>
+
+        <!-- Section Modifier -->
+        <section id="section-modifier" class="section hidden">
+            <h2 class="text-lg font-semibold mb-4">Modifier un dossier</h2>
+            <div id="modifier-list" class="space-y-3">
+                <!-- Les dossiers à modifier seront ajoutés ici dynamiquement -->
+            </div>
+        </section>
+
+        <!-- Section Supprimer -->
+        <section id="section-supprimer" class="section hidden">
+            <h2 class="text-lg font-semibold mb-4">Supprimer un dossier</h2>
+            <div id="supprimer-list" class="space-y-3">
+                <!-- Les dossiers à supprimer seront ajoutés ici dynamiquement -->
+            </div>
+        </section>
+
+        <!-- Section États -->
+        <section id="section-etats" class="section hidden">
+            <h2 class="text-lg font-semibold mb-4">États</h2>
+            <div class="mb-4">
+                <div class="flex space-x-2 mb-4">
+                    <button id="btn-traites" class="tab-btn active px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors">Traités</button>
+                    <button id="btn-manquants" class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors">Manquants</button>
+                    <button id="btn-ecritures" class="tab-btn px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors">Écritures</button>
+                </div>
+
+                <!-- Tableau Dossiers traités -->
+                <div id="tab-traites" class="tab-content active">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Écritures</th>
+                                </tr>
+                            </thead>
+                            <tbody id="traites-body" class="bg-white divide-y divide-gray-200">
+                                <!-- Contenu dynamique -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn-print mt-4 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimer</span>
+                    </button>
+                </div>
+
+                <!-- Tableau Pièces manquantes -->
+                <div id="tab-manquants" class="tab-content hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pièces manquantes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="manquants-body" class="bg-white divide-y divide-gray-200">
+                                <!-- Contenu dynamique -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn-print mt-4 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimer</span>
+                    </button>
+                </div>
+
+                <!-- Tableau Écritures total -->
+                <div id="tab-ecritures" class="tab-content hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total écritures</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ecritures-body" class="bg-white divide-y divide-gray-200">
+                                <!-- Contenu dynamique -->
+                            </tbody>
+                            <tfoot class="bg-gray-50">
+                                <tr>
+                                    <td class="px-6 py-4 font-medium">Total général</td>
+                                    <td id="total-general" class="px-6 py-4 font-medium">0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <button class="btn-print mt-4 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2">
+                        <i class="fas fa-print"></i>
+                        <span>Imprimer</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
